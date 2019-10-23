@@ -1,0 +1,22 @@
+header.appTitle {
+    display: flex;
+    border: 1px solid black;
+    height: 150px;
+    width: 100%;
+    justify-content: center;
+}
+
+h1.title {
+    font-size: 50px;
+    margin-top: 2%;
+}
+
+div.notesHolder {
+    display: block;
+    height: 100%;
+    width: 800px;
+    position: relative;
+    overflow: auto;
+    left: 60%;
+    border: 1px solid black;
+}
