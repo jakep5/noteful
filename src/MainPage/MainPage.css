@@ -22,6 +22,11 @@ h2.noteName {
     left: 2%;
 }
 
+h2.folderName {
+    position: relative;
+    top: 10%;
+}
+
 p.modified {
     position: relative;
     top: 55%;
@@ -32,6 +37,11 @@ button.deleteButton {
     float: right;
     right: 5%;
     position: relative;
+}
+
+button.addFolder {
+    padding: 30px 90px;
+    font-size: 20px;
 }
 
 div.notesHolder {
@@ -49,11 +59,14 @@ div.foldersHolder{
     display: block;
     text-align: center;
     height: 100%;
-    width: 50%;
-    position: relative;
+    width: 40%;
+    position: absolute;
+    top: 30%;
     overflow: auto;
     border: 1px solid black;
     border-top: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
 }
 
 
@@ -63,5 +76,14 @@ div.noteHolder {
     width: 90%;
     border: 1px solid black;
     margin-top: 2%;
+}
+
+div.folderHolder {
+    display: inline-block;
+    height: 100px;
+    width: 90%;
+    margin-bottom: 20px;
+    border: 1px solid black;
+
 }
 

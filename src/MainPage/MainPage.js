@@ -21,7 +21,13 @@ export default class MainPage extends Component {
                                 </div>
                             )}
                         </div>
-                        <div className="foldersHolder"></div>
+                        <div className="foldersHolder">
+                            {notesList.folders.map(folder =>
+                                <div className="folderHolder">
+                                    <h2 className="folderName">{folder.name}</h2>
+                                </div>)}
+                            <button className="addFolder">Add folder</button>
+                        </div>
                     </section>
                 </main>
             </div>
