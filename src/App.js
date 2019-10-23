@@ -1,10 +1,15 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
+import MainPage from './MainPage/MainPage';
 
 function App() {
   return (
     <main className='App'>
-      {/* content goes here */}
+      <Switch>
+        <Route exact path="/" component = {MainPage}/>
+        <Route path="/folders" component = {FolderPage} />
+        <Route path="/notes" component = {NotePage} />
+      </Switch>
     </main>
   );
 }
