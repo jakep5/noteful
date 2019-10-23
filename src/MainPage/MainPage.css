@@ -6,17 +6,62 @@ header.appTitle {
     justify-content: center;
 }
 
+section.mainPage {
+    height: 100%;
+    width: 100%;
+}
+
 h1.title {
     font-size: 50px;
     margin-top: 2%;
 }
 
+h2.noteName {
+    float: left;
+    position: relative;
+    left: 2%;
+}
+
+p.modified {
+    position: relative;
+    top: 55%;
+    right: 30%;
+}
+
+button.deleteButton {
+    float: right;
+    right: 5%;
+    position: relative;
+}
+
 div.notesHolder {
     display: block;
+    text-align: center;
     height: 100%;
-    width: 800px;
+    width: 60%;
     position: relative;
     overflow: auto;
-    left: 60%;
+    left: 40%;
     border: 1px solid black;
+    border-top: 0px;
 }
+div.foldersHolder{
+    display: block;
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    position: relative;
+    overflow: auto;
+    border: 1px solid black;
+    border-top: 0px;
+}
+
+
+div.noteHolder {
+    display: inline-block;
+    height: 100px;
+    width: 90%;
+    border: 1px solid black;
+    margin-top: 2%;
+}
+

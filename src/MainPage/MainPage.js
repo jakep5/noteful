@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import './MainPage.css';
 import notesList from '../store';
 
-const notesArray = Array.from(notesList)
 
 export default class MainPage extends Component {
     render() {
-        console.log(notesArray)
         return (
             <div>
                 <header className="appTitle">
@@ -15,14 +13,15 @@ export default class MainPage extends Component {
                 <main>
                     <section className="mainPage">
                         <div className="notesHolder">
-                            {notesArray.map(note => 
+                            {notesList.notes.map(note => 
                                 <div className="noteHolder">
-                                    <h2>{note.notes.name}</h2>
-                                    <p>Date modified: {note.notes.modified}</p>
-                                    <button>Delete Note</button>
+                                    <h2 className="noteName">{note.name}</h2>
+                                    <p className="modified">Date modified: {note.modified}</p>
+                                    <button className="deleteButton">Delete Note</button>
                                 </div>
                             )}
                         </div>
+                        <div className="foldersHolder"></div>
                     </section>
                 </main>
             </div>
