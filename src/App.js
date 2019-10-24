@@ -11,14 +11,27 @@ function App() {
       <Switch>
         <Route 
           exact path="/" 
-          render = {() => {
+          render = {({history}) => {
             return(
-            <MainPage  />
+              <MainPage  
+                onClickTitle = {() => history.push("/")}/>
           )}} />
-        <Route path="/folders" component = {FolderPage} />
+        <Route 
+          path="/folders/:folderId" 
+          render = {({history}) => {
+            return (
+              <FolderPage 
+                onClickTitle = {() => history.push("/")}/>
+            )}} />
         <Route 
           path="/notes/:noteId" 
-          component ={NotePage}/>
+          render = {({history}) => {
+            return (
+              <NotePage 
+                onClickBack = {() => history.goBack()} 
+                onClickTitle = {() => history.push("/")}/>
+            )
+          }}/>
       </Switch>
     </main>
   );

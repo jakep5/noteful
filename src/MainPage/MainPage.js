@@ -6,14 +6,16 @@ import notesList from '../store';
 
 export default class MainPage extends Component {
     render() {
+        const { onClickTitle} = this.props
         return (
             <div>
                 <header className="appTitle">
-                    <h1 className="title">Noteful</h1>
+                    <h1 className="title" onClick = {onClickTitle}>Noteful</h1>
                 </header>
                 <main>
                     <section className="mainPage">
                         <div className="notesHolder">
+                            <button className = "addNote">Add Note</button>
                             {notesList.notes.map(note => 
                                 <div className="noteHolder">
                                     <h2 className="noteName">
@@ -29,7 +31,11 @@ export default class MainPage extends Component {
                         <div className="foldersHolder">
                             {notesList.folders.map(folder =>
                                 <div className="folderHolder">
-                                    <h2 className="folderName">{folder.name}</h2>
+                                    <h2 className="folderName">
+                                        <Link to={`/folders/${folder.id}`}>
+                                            {folder.name}
+                                        </Link>
+                                    </h2>
                                 </div>)}
                             <button className="addFolder">Add folder</button>
                         </div>

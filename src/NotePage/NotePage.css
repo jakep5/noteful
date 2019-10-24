@@ -9,6 +9,7 @@ div.noteDisplay {
     border: 1px solid black;
     border-top: 0px;
     border-bottom: 0px;
+    border-left: 0px;
 }
 
 div.goBackDisplay {
@@ -16,11 +17,51 @@ div.goBackDisplay {
     text-align: center;
     height: 100%;
     width: 40%;
+    top: 16%;
     position: absolute;
-    top: 30%;
     overflow: auto;
     border: 1px solid black;
     border-top: 0px;
     border-right: 0px;
     border-bottom: 0px;
+}
+
+div.contentHolder {
+    overflow: auto;
+    width: 90%;
+    display: inline-block;
+}
+
+div.noteHolder {
+    display: inline-block;
+    height: 100px;
+    width: 90%;
+}
+
+h2.noteName {
+    float: left;
+}
+
+h2.folderName {
+    font-size: 35px;
+}
+
+p.modified {
+    float: left;
+    position: relative;
+    left: 0.5%;
+}
+
+button.deleteNote {
+    float: right;
+    position: relative;
+    right: 10%;
+    top: 30%;
+    padding: 15px 40px;
+}
+
+button.goBack {
+    padding: 20px 100px;
+    position: relative;
+    margin-top: 10%;
 }
