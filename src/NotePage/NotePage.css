@@ -44,6 +44,7 @@ h2.noteName {
 
 h2.folderName {
     font-size: 35px;
+    margin-top: 100px;
 }
 
 p.modified {
@@ -63,5 +64,5 @@ button.deleteNote {
 button.goBack {
     padding: 20px 100px;
     position: relative;
-    margin-top: 10%;
+    margin-top: 5%;
 }
