@@ -25,7 +25,11 @@ function FolderPage(props) {
     return (
         <div>
             <header className="appTitle">
-                <h1 className="title" onClick = {props.onClickTitle}>Noteful</h1>
+                <h1 className="title">
+                    <Link to="/">
+                        Noteful
+                    </Link>
+                </h1>
             </header>
             <main>
                 <section className ="mainPage">
