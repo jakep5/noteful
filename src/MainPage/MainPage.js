@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom';
 import './MainPage.css';
 import notesList from '../store';
 
@@ -15,7 +16,11 @@ export default class MainPage extends Component {
                         <div className="notesHolder">
                             {notesList.notes.map(note => 
                                 <div className="noteHolder">
-                                    <h2 className="noteName">{note.name}</h2>
+                                    <h2 className="noteName">
+                                        <Link to={`/notes/${note.id}`}>
+                                            {note.name}
+                                        </Link>
+                                    </h2>
                                     <p className="modified">Date modified: {note.modified}</p>
                                     <button className="deleteButton">Delete Note</button>
                                 </div>

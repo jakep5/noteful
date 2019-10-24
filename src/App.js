@@ -16,7 +16,9 @@ function App() {
             <MainPage  />
           )}} />
         <Route path="/folders" component = {FolderPage} />
-        <Route path="/notes" component = {NotePage} />
+        <Route 
+          path="/notes/:noteId" 
+          component ={NotePage}/>
       </Switch>
     </main>
   );

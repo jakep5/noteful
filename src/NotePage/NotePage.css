@@ -1,0 +1,26 @@
+div.noteDisplay {
+    display: block;
+    text-align: center;
+    height: 100%;
+    width: 60%;
+    position: relative;
+    overflow: auto;
+    left: 40%;
+    border: 1px solid black;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+div.goBackDisplay {
+    display: block;
+    text-align: center;
+    height: 100%;
+    width: 40%;
+    position: absolute;
+    top: 30%;
+    overflow: auto;
+    border: 1px solid black;
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+}
