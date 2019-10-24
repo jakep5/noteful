@@ -5,3 +5,8 @@ div.folderHolder {
 div.highlighted {
     background-color: lightblue;
 }
+
+h2.folderName {
+    position: relative;
+    top: -75%;
+}
