@@ -7,34 +7,50 @@ import NotesContext from './NotesContext/NotesContext';
 
 
 class App extends React.Component {
+  state ={
+    notes: [],
+    folders: []
+  };
+
+  componentDidMount() {
+    Promise.all([
+      fetch(`${config.API_ENDPOINT/notes}`),
+      fetch(`${config.API_ENDPOINT/folders}`)
+    ])
+      .then(([notesResponse, foldersResponse]) => {
+        if (!notesResponse.ok)
+          return notesResponse.json().then(e=>Promise.reject(e));
+        if (!foldersResponse.ok)
+          return foldersResponse.json().then(e=>Promise.reject(e))
+        
+        return (Promise.all([notesResponse.json(), foldersResponse.json()]));
+      })
+
+  }
   render() {
+    const contextValue = {
+
+    }
     return (
       <main className='App'>
         <NotesContext.Provider>
           <Switch>
             <Route 
               exact path="/" 
-              render = {({history}) => {
-                return(
-                  <MainPage  
-                    onClickTitle = {() => history.push("/")}/>
-              )}} />
+              component={<MainPage  
+                    onClickTitle = {() => history.push("/")}/>}
+            />
             <Route 
               path="/folders/:folderId" 
-              render = {({history}) => {
-                return (
-                  <FolderPage 
-                    onClickTitle = {() => history.push("/")}/>
-                )}} />
+              component = { <FolderPage 
+                onClickTitle = {() => history.push("/")}/>}
+            />
             <Route 
               path="/notes/:noteId" 
-              render = {({history}) => {
-                return (
-                  <NotePage 
+              component= {<NotePage 
                     onClickBack = {() => history.goBack()} 
-                    onClickTitle = {() => history.push("/")}/>
-                )
-              }}/>
+                    onClickTitle = {() => history.push("/")}/>}
+            />
           </Switch>
         </NotesContext.Provider>
       </main>
