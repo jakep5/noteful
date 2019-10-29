@@ -29,7 +29,7 @@ class FolderPage extends React.Component {
         
         return (
             <NotesContext.Consumer>
-                {(context) => (
+                {(value) => (
                     <div>
                         <header className="appTitle">
                             <h1 className="title">
@@ -55,7 +55,7 @@ class FolderPage extends React.Component {
 
                                 </div>
                                 <div className = "goBackDisplay">
-                                    {context.folders.map(folder => {
+                                    {value.folders.map(folder => {
                                         if (folder.id === this.props.match.params.folderId) {
                                             return (
                                                 <div className="folderHolder highlighted">
