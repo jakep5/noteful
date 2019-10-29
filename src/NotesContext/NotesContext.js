@@ -7,6 +7,13 @@ const NotesContext = React.createContext({
     handleFetch: () => {},
 });
 
+export default NotesContext
+
+export const NotesProvider = NotesContext.Provider
+export const NotesConsumer = NotesContext.Consumer
+
+
+
 /* class NotesProvider extends React.Component{
     state = {
         notes: [],
@@ -52,7 +59,3 @@ const NotesContext = React.createContext({
 
     }
 } */ 
-
-
-
-export default NotesContext;

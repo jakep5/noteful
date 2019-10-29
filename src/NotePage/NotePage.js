@@ -3,6 +3,7 @@ import './NotePage.css';
 import {Link} from 'react-router-dom';
 import notesList from '../store'
 import NotesContext from '../NotesContext/NotesContext';
+import { NotesConsumer } from '../NotesContext/NotesContext';
 import {withRouter} from 'react-router-dom';
 
 class NotePage extends React.Component {
@@ -21,9 +22,9 @@ class NotePage extends React.Component {
     
 
         return (
-            <NotesContext.Consumer>
-                {(context) => (
-                    <div>
+            <NotesConsumer>
+            {(context) => (
+                <div>
                         <header className="appTitle">
                             <h1 className="title">
                                 <Link to="/">
@@ -51,7 +52,7 @@ class NotePage extends React.Component {
                         </main>
                     </div>
                 )}
-            </NotesContext.Consumer>
+            </NotesConsumer>
         )
     }
 }

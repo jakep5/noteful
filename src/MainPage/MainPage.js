@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom';
 import NotesContext from '../NotesContext/NotesContext';
+import { NotesConsumer } from '../NotesContext/NotesContext'
 import config from '../config';
 import './MainPage.css';
-import notesList from '../store';
 
 
 class MainPage extends React.Component {
@@ -46,7 +46,7 @@ class MainPage extends React.Component {
     
     render() {
         return (
-            <NotesContext.Consumer>
+            <NotesConsumer>
                 {(context) => (
                     <div>
                         <header className="appTitle">
@@ -94,7 +94,7 @@ class MainPage extends React.Component {
                         </main>
                     </div>
                 )}
-            </NotesContext.Consumer>
+            </NotesConsumer>
         )
     }
 }

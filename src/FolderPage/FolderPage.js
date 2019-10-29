@@ -3,7 +3,7 @@ import './FolderPage.css';
 import '../MainPage/MainPage';
 import {withRouter} from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import NotesProvider from '../NotesContext/NotesContext'
+import { NotesConsumer } from '../NotesContext/NotesContext';
 import NotesContext from '../NotesContext/NotesContext'
 import '../NotePage/NotePage.css';
 
@@ -28,8 +28,8 @@ class FolderPage extends React.Component {
 
         
         return (
-            <NotesContext.Consumer>
-                {(value) => (
+            <NotesConsumer>
+                {(context) => (
                     <div>
                         <header className="appTitle">
                             <h1 className="title">
@@ -55,7 +55,7 @@ class FolderPage extends React.Component {
 
                                 </div>
                                 <div className = "goBackDisplay">
-                                    {value.folders.map(folder => {
+                                    {context.folders.map(folder => {
                                         if (folder.id === this.props.match.params.folderId) {
                                             return (
                                                 <div className="folderHolder highlighted">
@@ -82,7 +82,7 @@ class FolderPage extends React.Component {
                         </main>
                     </div>
             )}
-            </NotesContext.Consumer>
+            </NotesConsumer>
         )
     }
 }

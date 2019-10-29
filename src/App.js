@@ -4,14 +4,18 @@ import MainPage from './MainPage/MainPage';
 import FolderPage from './FolderPage/FolderPage';
 import config from './config'
 import NotePage from './NotePage/NotePage';
-import NotesContext from './NotesContext/NotesContext';
+import { NotesProvider } from './NotesContext/NotesContext';
+
 
 
 class App extends React.Component {
-  state ={
-    notes: [],
-    folders: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      notes: [],
+      folders: []
+    };
+  }
 
 
   deleteNote(noteId) {
@@ -23,12 +27,12 @@ class App extends React.Component {
     })
   }
 
-  handleFetch = (notes, folders) => {
+    handleFetch = (newNotes, newFolders) => {
       this.setState({
-          notes: notes,
-          folders: folders
+        notes: newNotes,
+        folders: newFolders
       })
-  }
+    }
   
   componentDidMount() {
     Promise.all([
@@ -49,13 +53,15 @@ class App extends React.Component {
 
         return (Promise.all([notesResponse.json(), foldersResponse.json()]));
       })
-      .then(([notes, folders]) => {
-        this.handleFetch(notes, folders)
+      .then(([notesResponse, foldersResponse]) => {
+        this.handleFetch(notesResponse, foldersResponse)
       })
       .catch(error => {
         console.error({error});
       })
   }
+
+  
 
   render() {
     const contextValue = {
@@ -66,7 +72,7 @@ class App extends React.Component {
     }
     return (
       <main className='App'>
-        <NotesContext.Provider context={contextValue}>
+        <NotesProvider context={contextValue}>
           <Switch>
             <Route 
               exact path="/" 
@@ -81,7 +87,7 @@ class App extends React.Component {
               component={NotePage}
             />
           </Switch>
-        </NotesContext.Provider>
+        </NotesProvider>
       </main>
     );
   }
