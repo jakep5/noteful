@@ -1,24 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import NotesContext from '../NotesContext/NotesContext';
-import { NotesConsumer } from '../NotesContext/NotesContext'
+import { NotesConsumer } from '../NotesContext/NotesContext';
+import { NotesContext } from '../NotesContext/NotesContext'
 import config from '../config';
 import './MainPage.css';
 
 
 class MainPage extends React.Component {
 
-    static defaultProps = {
-        onDeleteNote: () => {},
-        history: {
-            goBack: () => {},
-        }
-    }
-
-
     static contextType = NotesContext;
 
-    deleteNoteRequest(noteId, callback) {
+
+    deleteNoteRequest = (noteId) => {
 
         fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
             method: 'DELETE',
@@ -35,7 +28,7 @@ class MainPage extends React.Component {
             return response.json()
         })
         .then(noteId => {
-            callback(noteId)
+            this.context.deleteNote(noteId)
         })
         .catch(error => {
             alert(error)
@@ -43,11 +36,10 @@ class MainPage extends React.Component {
 
     }
 
-    
     render() {
         return (
             <NotesConsumer>
-                {(context) => (
+                {value => (
                     <div>
                         <header className="appTitle">
                             <h1 className="title">
@@ -58,7 +50,7 @@ class MainPage extends React.Component {
                             <section className="mainPage">
                                 <div className="notesHolder">
                                     <button className = "addNote">Add Note</button>
-                                    {context.notes.map(note => 
+                                    {value.notes.map(note => 
                                         <div className="noteHolder">
                                             <h2 className="noteName">
                                                 <Link to={`/notes/${note.id}`}>
@@ -71,7 +63,7 @@ class MainPage extends React.Component {
                                                 onClick={() => {
                                                     this.deleteNoteRequest(
                                                         note.id,
-                                                        context.deleteNote
+                                                        value.deleteNote(note.id)
                                                     )
                                                 }}>
                                                 Delete Note
@@ -80,7 +72,7 @@ class MainPage extends React.Component {
                                     )}
                                 </div>
                                 <div className="foldersHolder">
-                                    {context.folders.map(folder =>
+                                    {value.folders.map(folder =>
                                         <div className="folderHolder">
                                             <h2 className="folderName">
                                                 <Link to={`/folders/${folder.id}`}>
@@ -88,7 +80,9 @@ class MainPage extends React.Component {
                                                 </Link>
                                             </h2>
                                         </div>)}
-                                    <button className="addFolder">Add folder</button>
+                                    <Link to={'/addFolder'}>
+                                        <button className="addFolder">Add folder</button>
+                                    </Link>
                                 </div>
                             </section>
                         </main>

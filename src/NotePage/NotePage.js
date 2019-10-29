@@ -1,29 +1,60 @@
 import React from 'react'
 import './NotePage.css';
+import {notesList} from '../store';
+import config from '../config';
 import {Link} from 'react-router-dom';
-import notesList from '../store'
-import NotesContext from '../NotesContext/NotesContext';
 import { NotesConsumer } from '../NotesContext/NotesContext';
+import { NotesContext } from '../NotesContext/NotesContext';
 import {withRouter} from 'react-router-dom';
 
 class NotePage extends React.Component {
 
     static contextType = NotesContext;
+
+    deleteNoteRequest = (noteId) => {
+
+        fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type':'application/json'
+            }
+        })
+        .then(response => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response.json()
+        })
+        .then(noteId => {
+            this.context.deleteNote(noteId)
+        })
+        .then(() => this.goBack())
+        .catch(error => {
+            alert(error)
+        })
+
+    }
+
+    goBack = () => {
+        this.props.history.goBack();
+    }
     
     render() {
 
-        const note = this.context.notes.find(n =>
+        const note = notesList.notes.find(n =>
             n.id === this.props.match.params.noteId)
         let date = note.modified
         let formattedDate = date.substring(0,10);
-        const folder = this.context.folders.find(f =>
+        const folder = notesList.folders.find(f =>
             f.id === note.folderId)
     
     
 
         return (
             <NotesConsumer>
-            {(context) => (
+            {(value) => (
                 <div>
                         <header className="appTitle">
                             <h1 className="title">
@@ -38,14 +69,22 @@ class NotePage extends React.Component {
                                     <div className = "noteHolder">
                                         <h2 className="noteName">{note.name}</h2>
                                         <p className="modified">Modified on {formattedDate}</p>
-                                        <button className="deleteNote">Delete note</button>
+                                        <button 
+                                            className="deleteNote"
+                                            onClick={() => {
+                                                this.deleteNoteRequest(note.id,
+                                                value.deleteNote(note.id))
+                                            }}
+                                        >
+                                            Delete note
+                                        </button>
                                     </div>
                                     <div className = "contentHolder">
                                         <p className = "noteContent">{note.content}</p>
                                     </div>
                                 </div>
                                 <div class="goBackDisplay">
-                                    <button className = "goBack" onClick={this.props.onClickBack}>Go Back</button>
+                                    <button className = "goBack" onClick={this.goBack}>Go Back</button>
                                     <h2 className = "folderName">Folder : {folder.name}</h2>
                                 </div>
                             </section>

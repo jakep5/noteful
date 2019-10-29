@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react';
 import './FolderPage.css';
 import '../MainPage/MainPage';
 import {withRouter} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { NotesConsumer } from '../NotesContext/NotesContext';
-import NotesContext from '../NotesContext/NotesContext'
+import { NotesContext } from '../NotesContext/NotesContext';
 import '../NotePage/NotePage.css';
 
 class FolderPage extends React.Component {
@@ -13,7 +13,7 @@ class FolderPage extends React.Component {
 
     render() {
         const { folders = []} = this.context.folders
-        const {notes} = this.context.notes
+        const notes = this.context.notes
 
         const noteArray = notes.filter( note =>
             note.folderId === this.props.match.params.folderId)
@@ -29,7 +29,7 @@ class FolderPage extends React.Component {
         
         return (
             <NotesConsumer>
-                {(context) => (
+                {value => (
                     <div>
                         <header className="appTitle">
                             <h1 className="title">
@@ -55,7 +55,7 @@ class FolderPage extends React.Component {
 
                                 </div>
                                 <div className = "goBackDisplay">
-                                    {context.folders.map(folder => {
+                                    {value.folders.map(folder => {
                                         if (folder.id === this.props.match.params.folderId) {
                                             return (
                                                 <div className="folderHolder highlighted">
