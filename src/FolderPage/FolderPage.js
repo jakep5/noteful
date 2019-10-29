@@ -3,7 +3,7 @@ import './FolderPage.css';
 import '../MainPage/MainPage';
 import {withRouter} from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import notesList from '../store'
+import NotesProvider from '../NotesContext/NotesContext'
 import NotesContext from '../NotesContext/NotesContext'
 import '../NotePage/NotePage.css';
 
@@ -15,7 +15,7 @@ class FolderPage extends React.Component {
         const { folders = []} = this.context.folders
         const {notes} = this.context.notes
 
-        const noteArray = this.context.notes.filter( note =>
+        const noteArray = notes.filter( note =>
             note.folderId === this.props.match.params.folderId)
         
         console.log(noteArray)
@@ -41,7 +41,7 @@ class FolderPage extends React.Component {
                         <main>
                             <section className ="mainPage">
                                 <div className = "noteDisplay">
-                                    {context.notes.map((note, index) => 
+                                    {noteArray.map((note, index) => 
                                         <div className="noteHolder">
                                             <h2 className="noteName">
                                                 <Link to={`/notes/${note.id}`}>

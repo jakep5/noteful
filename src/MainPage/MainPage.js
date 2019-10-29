@@ -15,6 +15,7 @@ class MainPage extends React.Component {
         }
     }
 
+
     static contextType = NotesContext;
 
     deleteNoteRequest(noteId, callback) {
@@ -41,9 +42,9 @@ class MainPage extends React.Component {
         })
 
     }
+
     
     render() {
-        const { notes, folders } = this.context
         return (
             <NotesContext.Consumer>
                 {(context) => (
@@ -57,7 +58,7 @@ class MainPage extends React.Component {
                             <section className="mainPage">
                                 <div className="notesHolder">
                                     <button className = "addNote">Add Note</button>
-                                    {notes.map(note => 
+                                    {context.notes.map(note => 
                                         <div className="noteHolder">
                                             <h2 className="noteName">
                                                 <Link to={`/notes/${note.id}`}>
@@ -79,7 +80,7 @@ class MainPage extends React.Component {
                                     )}
                                 </div>
                                 <div className="foldersHolder">
-                                    {folders.map(folder =>
+                                    {context.folders.map(folder =>
                                         <div className="folderHolder">
                                             <h2 className="folderName">
                                                 <Link to={`/folders/${folder.id}`}>
@@ -97,5 +98,6 @@ class MainPage extends React.Component {
         )
     }
 }
+
 
 export default MainPage
