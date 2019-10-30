@@ -1,0 +1,27 @@
+div.AddFolderForm, div.addNoteFormHolder {
+    display: block;
+    text-align: center;
+    height: 400px;
+    width: 40%;
+    border: 1px solid black;
+    margin-left: 30%;
+    margin-top: 5%;
+}
+
+legend.formLegend {
+    font-size: 40px;
+    margin-bottom: 10%;
+}
+
+input#folderName, input#noteName {
+    margin-left: 3%;
+}
+
+button.folderFormSubmit, button.noteFormSubmit {
+    display: block;
+    padding: 10px 50px;
+    margin-top: 10%;
+    margin-left: calc(50% - 72px)
+
+}
+

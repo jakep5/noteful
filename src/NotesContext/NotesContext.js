@@ -17,7 +17,6 @@ export class NotesProvider extends React.Component {
       this.setState({
           notes: afterDeleteNotes
       })
-      console.log(this.state.notes)
     }
 
     handleFetch = (newNotes, newFolders) => {
@@ -25,6 +24,52 @@ export class NotesProvider extends React.Component {
             notes: newNotes,
             folders: newFolders
         })
+    }
+
+    addFolder = (newFolder) => {
+        fetch(`${config.API_ENDPOINT}/folders`, {
+            method: 'POST',
+            body: {"name": newFolder},
+        })
+        .then(response => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response.json()
+        })
+        /* .then(response => this.handleAddFolder(response)) */
+        .then(this.updateFoldersFetch)
+        .catch(error => {
+            alert(error)
+        })
+    }   
+
+    addNote = (noteObject) => {
+        fetch(`${config.API_ENDPOINT}/folders`, {
+            method: 'POST',
+
+        })
+    }
+
+    updateFoldersFetch = () => {
+        fetch(`${config.API_ENDPOINT}/folders`)
+        .then((response) => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response.json()
+        })
+        .then(response => console.log(response))
+        /* .then(newFolders => {
+            this.setState({
+                folders: newFolders
+            })
+        }) */
+
     }
     
     componentDidMount() {
@@ -60,7 +105,9 @@ export class NotesProvider extends React.Component {
           notes: this.state.notes,
           folders: this.state.folders,
           deleteNote : this.deleteNote,
-          handleFetch: this.handleFetch
+          handleFetch: this.handleFetch,
+          addFolder: this.addFolder,
+          addNote: this.addNote
         }
 
         return (

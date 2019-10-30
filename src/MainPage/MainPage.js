@@ -49,7 +49,9 @@ class MainPage extends React.Component {
                         <main>
                             <section className="mainPage">
                                 <div className="notesHolder">
-                                    <button className = "addNote">Add Note</button>
+                                    <Link to="/addNote">
+                                        <button className = "addNote">Add Note</button>
+                                    </Link>
                                     {value.notes.map(note => 
                                         <div className="noteHolder">
                                             <h2 className="noteName">

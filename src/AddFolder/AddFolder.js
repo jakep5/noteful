@@ -11,6 +11,15 @@ export default class AddFolder extends Component {
 
     static contextType = NotesContext;
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const folderName = document.getElementById('folderName').value;
+        console.log(folderName)
+        this.context.addFolder(folderName)
+        window.history.back();
+        
+    }
+
     render() {
         return (
             <NotesConsumer>
@@ -23,12 +32,22 @@ export default class AddFolder extends Component {
                                 </Link>
                             </h1>
                         </header>
-                        <section class="AddFolder">
+                        <section className="AddFolder">
                             <div className = "AddFolderForm">
-                                <form id="addFolder">
-                                    <legend>Add Folder</legend>
-                                    <label for="folderName">Folder name:</label>
-                                    <input id="folderName" type="text" />
+                                <form 
+                                    id="addFolder"
+                                    onSubmit = {(e) => this.handleSubmit(e)}
+                                >
+                                    <legend className="formLegend">Add Folder</legend>
+                                    <label htmlFor="folderName">Folder name:</label>
+                                    <input id="folderName" type="text" required/>
+                                    <button 
+                                        className="folderFormSubmit"
+                                        type="submit" 
+                                        htmlFor="addFolder"
+                                    >
+                                        Submit
+                                    </button> 
                                 </form>
                             </div>
                         </section>

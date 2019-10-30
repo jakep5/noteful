@@ -2,6 +2,7 @@ import React from 'react';
 import './FolderPage.css';
 import '../MainPage/MainPage';
 import {withRouter} from 'react-router-dom';
+import config from '../config';
 import { Link } from 'react-router-dom';
 import { NotesConsumer } from '../NotesContext/NotesContext';
 import { NotesContext } from '../NotesContext/NotesContext';
@@ -11,6 +12,32 @@ class FolderPage extends React.Component {
 
     static contextType = NotesContext
 
+    deleteNoteRequest = (noteId) => {
+
+        fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type':'application/json'
+            }
+        })
+        .then(response => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response.json()
+        })
+        .then(noteId => {
+            this.context.deleteNote(noteId)
+        })
+        .catch(error => {
+            alert(error)
+        })
+
+    }
+
+
     render() {
         const { folders = []} = this.context.folders
         const notes = this.context.notes
@@ -18,13 +45,11 @@ class FolderPage extends React.Component {
         const noteArray = notes.filter( note =>
             note.folderId === this.props.match.params.folderId)
         
-        console.log(noteArray)
         let dateArray = [];
 
         noteArray.map( note =>
             dateArray.push((note.modified).substring(0,10)))
 
-        console.log(dateArray)
 
         
         return (
@@ -49,7 +74,12 @@ class FolderPage extends React.Component {
                                                 </Link>
                                             </h2>
                                             <p className="modified">Date modified: {dateArray[index]}</p>
-                                            <button className="deleteButton">Delete Note</button>
+                                            <button 
+                                                className="deleteButton"
+                                                onClick={() => {
+                                                    this.deleteNoteRequest(note.id,
+                                                        value.deleteNote(note.id))
+                                                }}>Delete Note</button>
                                         </div>
                                     )}
 

@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import MainPage from './MainPage/MainPage';
 import FolderPage from './FolderPage/FolderPage';
 import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote'
 import config from './config'
 import NotePage from './NotePage/NotePage';
 
@@ -30,6 +31,10 @@ class App extends React.Component {
             <Route 
               path="/addFolder"
               component={AddFolder}
+            />
+            <Route 
+              path="/addNote"
+              component={AddNote}
             />
           </Switch>
       </main>
