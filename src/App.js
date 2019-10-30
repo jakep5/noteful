@@ -38,6 +38,10 @@ class App extends React.Component {
                 path="/addNote"
                 component={AddNote}
               />
+              <Route 
+                path="/error"
+                component={ErrorComponent}
+              />
             </Switch>
           </ErrorComponent>
       </main>

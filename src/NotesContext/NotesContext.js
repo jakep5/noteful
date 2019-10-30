@@ -26,10 +26,15 @@ export class NotesProvider extends React.Component {
         })
     }
 
-    addFolder = (newFolder) => {
+    addFolder = (folderName) => {
         fetch(`${config.API_ENDPOINT}/folders`, {
             method: 'POST',
-            body: {"name": newFolder},
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: folderName
+            })
         })
         .then(response => {
             if(!response.ok) {
@@ -83,13 +88,12 @@ export class NotesProvider extends React.Component {
             }
             return response.json()
         })
-        .then(response => console.log(response))
-        /* .then(newFolders => {
+        .then(responseJson => console.log(responseJson))
+        .then(newFolders => {
             this.setState({
                 folders: newFolders
             })
-        }) */
-
+        })
     }
     
     componentDidMount() {
@@ -144,54 +148,3 @@ export class NotesProvider extends React.Component {
 
 
 export const NotesConsumer = NotesContext.Consumer;
-
-
-
-
-
-
-/* class NotesProvider extends React.Component{
-    state = {
-        notes: [],
-        folders: [],
-        deleteNote: newNotes => {
-            this.setState({
-                notes: newNotes
-            })
-        },
-        handleFetch: (notes,folders) => {
-            this.setState({
-                notes: notes,
-                folders: folders,
-            })
-        }
-    } */
-/* 
-    handleFetch(notes, folders) {
-        this.setState({
-            notes: notes,
-            folders: folders
-        })
-    }
-
-    deleteNote(newNotes) {
-        this.setState({
-            notes: newNotes
-        })
-    } */
-
-    /* render() {
-        return(
-            <NotesContext.Provider
-                context = {{
-                    notes : this.state.notes,
-                    folders : this.state.folders,
-                    handleDeleteNote : this.state.deleteNote(),
-                    handleFetch : this.state.handleFetch()
-                }}>
-                {this.props.children} {/* lives at top level of app, can then be accessed anywhere */
-            /* </NotesContext.Provider>
-        )
-
-    }
-} */ 
