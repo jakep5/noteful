@@ -28,12 +28,12 @@ export class NotesProvider extends React.Component {
 
     addFolder = (folderName) => {
         fetch(`${config.API_ENDPOINT}/folders`, {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: folderName
+                name: folderName,
             })
         })
         .then(response => {
@@ -45,11 +45,11 @@ export class NotesProvider extends React.Component {
             return response.json()
         })
         /* .then(response => this.handleAddFolder(response)) */
-        .then(this.updateFoldersFetch)
         .catch(error => {
             alert(error)
         })
     }   
+
 
     getAddNoteFolder = (noteObject) => {
         const matchingFolder = this.state.folders.filter(fldr =>
@@ -64,9 +64,9 @@ export class NotesProvider extends React.Component {
 
     addNoteFetch = (noteObject, matchFolderId) => {
         fetch(`${config.API_ENDPOINT}/notes`, {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 id: "123456",
@@ -75,6 +75,10 @@ export class NotesProvider extends React.Component {
                 folderId: matchFolderId,
                 content: noteObject.content
             })
+        })
+        .then(this.updateNotesFetch())
+        .catch(error => {
+            alert(error)
         })
     }
 
@@ -88,11 +92,34 @@ export class NotesProvider extends React.Component {
             }
             return response.json()
         })
-        .then(responseJson => console.log(responseJson))
         .then(newFolders => {
             this.setState({
                 folders: newFolders
             })
+        })
+        .catch(error => {
+            alert(error)
+        })
+    }
+
+    updateNotesFetch = () => {
+        fetch(`${config.API_ENDPOINT}/notes`)
+        .then((response) => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+            })
+        }
+        return response.json()
+        })
+        .then (newNotes => {
+            this.setState({
+                notes: newNotes
+            })
+        })
+        .then(console.log(this.state.notes))
+        .catch(error => {
+            alert(error)
         })
     }
     
@@ -119,7 +146,7 @@ export class NotesProvider extends React.Component {
                 this.handleFetch(notesResponse, foldersResponse)
             })
             .catch(error => {
-                console.error({error});
+                alert(error)
             })
     }
 

@@ -8,8 +8,8 @@ legend.formLegend {
 }
 input#noteName {
     display: block;
-    margin-left: 0%;
-    margin-top: 0%;
+    margin-left: 28%;
+    margin-top: 2%;
     margin-bottom: 5%;
 }
 
@@ -22,6 +22,10 @@ input#noteContent {
 
 select#noteFolder {
     margin-top: 10%;
+}
+
+label#selectLabel {
+    margin-right: 2%;
 }
 
 button.noteFormSubmit {

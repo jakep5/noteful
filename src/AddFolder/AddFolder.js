@@ -17,7 +17,6 @@ export default class AddFolder extends Component {
         console.log(folderName)
         this.context.addFolder(folderName)
         window.history.back();
-        
     }
 
     render() {

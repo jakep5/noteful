@@ -23,7 +23,6 @@ export default class AddNote extends Component {
 
     render() {
         return (
-            <ErrorComponent>
                 <NotesConsumer>
                     {value => (
                         <div>
@@ -44,7 +43,7 @@ export default class AddNote extends Component {
                                         <input id="noteName" type="text" required></input>
                                         <label htmlFor="noteContent" id="content">Note content:</label>
                                         <input id="noteContent" type="text" required></input>
-                                        <label htmlFor="noteFolder">Select folder:</label>
+                                        <label htmlFor="noteFolder" id="selectLabel">Select folder:</label>
                                         <select id="noteFolder"required>
                                             {value.folders.map(folder => 
                                                 <option value={folder.name}>{folder.name}</option>
@@ -63,7 +62,6 @@ export default class AddNote extends Component {
                         </div>
                     )}
                 </NotesConsumer>
-            </ErrorComponent>
         )
     }
 }
