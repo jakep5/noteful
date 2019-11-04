@@ -10,6 +10,11 @@ class NotePage extends React.Component {
 
     static contextType = NotesContext;
 
+    deleteNote = (noteId) => {
+        window.history.back();
+        this.deleteNoteRequest(noteId);
+    }
+    
     deleteNoteRequest = (noteId) => {
 
         fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
@@ -71,9 +76,7 @@ class NotePage extends React.Component {
                                         <button 
                                             className="deleteNote"
                                             onClick={() => {
-                                                this.deleteNoteRequest(note.id,
-                                                value.deleteNote(note.id))
-                                            }}
+                                                this.deleteNote(note.id)}}
                                         >
                                             Delete note
                                         </button>
