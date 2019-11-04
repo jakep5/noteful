@@ -20,27 +20,43 @@ class App extends React.Component {
             <Switch>
               <Route 
                 exact path="/" 
-                component={MainPage}
+                render={() => (
+                  <ErrorComponent>
+                    <MainPage/>
+                  </ErrorComponent>
+                )}
               />
               <Route 
                 path="/folders/:folderId" 
-                component={FolderPage}
+                render={() => (
+                  <ErrorComponent>
+                    <FolderPage/>
+                  </ErrorComponent>
+                )}
               />
               <Route 
                 path="/notes/:noteId" 
-                component={NotePage}
+                render={() => (
+                  <ErrorComponent>
+                    <NotePage/>
+                  </ErrorComponent>
+                )}
               />
               <Route 
                 path="/addFolder"
-                component={AddFolder}
+                render={() => (
+                  <ErrorComponent>
+                    <AddFolder/>
+                  </ErrorComponent>
+                )}
               />
               <Route 
                 path="/addNote"
-                component={AddNote}
-              />
-              <Route 
-                path="/error"
-                component={ErrorComponent}
+                render={() => (
+                  <ErrorComponent>
+                    <AddNote/>
+                  </ErrorComponent>
+                )}
               />
             </Switch>
           </ErrorComponent>

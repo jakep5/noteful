@@ -55,7 +55,7 @@ class MainPage extends React.Component {
                                     {value.notes.map(note => 
                                         <div className="noteHolder">
                                             <h2 className="noteName">
-                                                <Link to={`/notes/${note.id}`}>
+                                               <Link to={`/notes/${note.id}`}>
                                                     {note.name}
                                                 </Link>
                                             </h2>

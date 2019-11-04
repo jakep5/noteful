@@ -1,5 +1,6 @@
 import React from 'react'
 import config from '../config';
+import moment from 'moment';
 
 export const NotesContext = React.createContext();
 
@@ -16,7 +17,7 @@ export class NotesProvider extends React.Component {
       )
       this.setState({
           notes: afterDeleteNotes
-      })
+      });
     }
 
     handleFetch = (newNotes, newFolders) => {
@@ -44,11 +45,18 @@ export class NotesProvider extends React.Component {
             }
             return response.json()
         })
-        /* .then(response => this.handleAddFolder(response)) */
+        .then(newFolder => (this.updateFolder(newFolder)))
         .catch(error => {
             alert(error)
         })
-    }   
+    } 
+    
+    updateFolder = (newFolder) => {
+        this.setState({
+            folders: [...this.state.folders, newFolder]
+        });
+        window.location.reload();
+    }
 
 
     getAddNoteFolder = (noteObject) => {
@@ -59,27 +67,37 @@ export class NotesProvider extends React.Component {
 
     getFolderId = (matchingFolder, noteObject) => {
         const matchFolderId = matchingFolder[0].id;
-        this.addNoteFetch(matchFolderId, noteObject)
+        this.addNoteFetch(noteObject, matchFolderId)
     }
 
     addNoteFetch = (noteObject, matchFolderId) => {
+        var date = moment().toISOString();
         fetch(`${config.API_ENDPOINT}/notes`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                id: "123456",
-                name: noteObject.name,
-                modified: new Date().getTime(),
-                folderId: matchFolderId,
-                content: noteObject.content
-            })
+            body: JSON.stringify(
+                {
+                    name: noteObject.name,
+                    modified: date,
+                    folderId: matchFolderId,
+                    content: noteObject.content
+                }
+            )
         })
-        .then(this.updateNotesFetch())
+        .then(window.location.reload())
+        .then(newNote => this.updateNotes(newNote))
         .catch(error => {
             alert(error)
         })
+    }
+
+    updateNotes = (newNote) => {
+        this.setState({
+            notes: [...this.state.notes, newNote]
+        });
+        window.location.reload();
     }
 
     updateFoldersFetch = () => {

@@ -1,6 +1,5 @@
 import React from 'react'
 import './NotePage.css';
-import {notesList} from '../store';
 import config from '../config';
 import {Link} from 'react-router-dom';
 import { NotesConsumer } from '../NotesContext/NotesContext';
@@ -30,7 +29,6 @@ class NotePage extends React.Component {
         .then(noteId => {
             this.context.deleteNote(noteId)
         })
-        .then(() => this.goBack())
         .catch(error => {
             alert(error)
         })
@@ -43,12 +41,13 @@ class NotePage extends React.Component {
     
     render() {
 
-        const note = notesList.notes.find(n =>
+        const note = this.context.notes.find(n =>
             n.id === this.props.match.params.noteId)
-        let date = note.modified
-        let formattedDate = date.substring(0,10);
-        const folder = notesList.folders.find(f =>
-            f.id === note.folderId)
+        console.log(note);
+        let formattedDate = note.modified.substring(0,10);
+        const folder = this.context.folders.find(f =>
+            f.id === note.folderId);
+        console.log(folder)
     
     
 
@@ -85,7 +84,7 @@ class NotePage extends React.Component {
                                 </div>
                                 <div class="goBackDisplay">
                                     <button className = "goBack" onClick={this.goBack}>Go Back</button>
-                                    <h2 className = "folderName">Folder : {folder.name}</h2>
+                                    <h2 className = "folderName"> Folder : {folder.name}</h2>
                                 </div>
                             </section>
                         </main>
