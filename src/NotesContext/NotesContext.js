@@ -52,6 +52,7 @@ export class NotesProvider extends React.Component {
             }
             return response.json()
         })
+        .then(window.location.reload())
         .then(newFolder => (this.updateFolder(newFolder)))
         .catch(error => {
             alert(error)
@@ -69,6 +70,7 @@ export class NotesProvider extends React.Component {
     getAddNoteFolder = (noteObject) => {
         const matchingFolder = this.state.folders.filter(fldr =>
             fldr.name == noteObject.folder)
+        console.log(matchingFolder)
         this.getFolderId(matchingFolder, noteObject);
     }
 
@@ -78,22 +80,23 @@ export class NotesProvider extends React.Component {
     }
 
     addNoteFetch = (noteObject, matchFolderId) => {
+        const noteId = this.state.notes[this.state.notes.length - 1].id;
+        const newNoteId = noteId + 1;
         var date = moment().toISOString();
+        const newNote = {
+            id: newNoteId,
+            name: noteObject.name,
+            modified: date,
+            folder_id: matchFolderId,
+            content: noteObject.content
+        }
         fetch(`${config.API_ENDPOINT}/notes`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(
-                {
-                    name: noteObject.name,
-                    modified: date,
-                    folderId: matchFolderId,
-                    content: noteObject.content
-                }
-            )
+            body: JSON.stringify(newNote)
         })
-        .then(window.location.reload())
         .then(newNote => this.updateNotes(newNote))
         .catch(error => {
             alert(error)
