@@ -21,7 +21,7 @@ export default class ErrorComponent extends Component {
     render() {
         if (this.state.hasError) {
             return (
-                <div>
+                <div className="errorHolder">
                     <header className="appTitle">
                         <h1 className="title">
                             <Link to="/">Noteful</Link>

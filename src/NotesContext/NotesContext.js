@@ -6,9 +6,12 @@ export const NotesContext = React.createContext();
 
 export class NotesProvider extends React.Component {
     
-    state = {
-        notes: [],
-        folders: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            notes: [],
+            folders: []
+        }
     }
 
     deleteNote = (noteId) => {
