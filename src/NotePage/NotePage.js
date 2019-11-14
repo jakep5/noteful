@@ -10,16 +10,9 @@ class NotePage extends React.Component {
 
     static contextType = NotesContext;
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            notes: [],
-            folders: []
-        }
-    }
-
     deleteNote = (noteId) => {
         window.history.back();
+        console.log('going back');
         this.deleteNoteRequest(noteId);
     }
     
@@ -51,7 +44,6 @@ class NotePage extends React.Component {
     goBack = () => {
         this.props.history.goBack();
     }
-
    
     render() {
         const notes = this.context.notes;
@@ -87,8 +79,12 @@ class NotePage extends React.Component {
                                         <button 
                                             className="deleteNote"
                                             onClick={() => {
-                                                this.deleteNote(note.id)}}
-                                        >
+                                                this.deleteNote(
+                                                    note.id,
+                                                    value.deleteNote(note.id)
+                                                )
+                                        }}
+>
                                             Delete note
                                         </button>
                                     </div>
