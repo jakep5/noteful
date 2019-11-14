@@ -32,13 +32,16 @@ export class NotesProvider extends React.Component {
     }
 
     addFolder = (folderName) => {
+        const folderId = this.state.folders[this.state.folders.length - 1].id;
+        const newFolderId = folderId + 1;
         fetch(`${config.API_ENDPOINT}/folders`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: folderName,
+                id: newFolderId,
+                name: folderName
             })
         })
         .then(response => {
