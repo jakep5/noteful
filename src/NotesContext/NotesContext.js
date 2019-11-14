@@ -21,7 +21,6 @@ export class NotesProvider extends React.Component {
       this.setState({
           notes: afterDeleteNotes
       });
-      window.location.reload();
     }
 
     handleFetch = (newNotes, newFolders) => {
@@ -152,6 +151,7 @@ export class NotesProvider extends React.Component {
     }
     
     componentDidMount() {
+        console.log('mounted')
         Promise.all([
             fetch(`${config.API_ENDPOINT}/notes`),
             fetch(`${config.API_ENDPOINT}/folders`)

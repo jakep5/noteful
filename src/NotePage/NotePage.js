@@ -10,6 +10,14 @@ class NotePage extends React.Component {
 
     static contextType = NotesContext;
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            notes: [],
+            folders: []
+        }
+    }
+
     deleteNote = (noteId) => {
         window.history.back();
         this.deleteNoteRequest(noteId);
@@ -43,18 +51,21 @@ class NotePage extends React.Component {
     goBack = () => {
         this.props.history.goBack();
     }
-    
-    render() {
 
-        const note = this.context.notes.find(n =>
-            n.id === this.props.match.params.noteId)
-        console.log(note);
+   
+    render() {
+        const notes = this.context.notes;
+
+        const note = notes.find(n =>
+            n.id == this.props.match.params.noteId)
+
+
+        const folders = this.context.folders;
+
+        const folder = folders.find(f =>
+            f.id == note.folder_id);
+
         let formattedDate = note.modified.substring(0,10);
-        const folder = this.context.folders.find(f =>
-            f.id === note.folderId);
-        console.log(folder)
-    
-    
 
         return (
             <NotesConsumer>
@@ -72,7 +83,7 @@ class NotePage extends React.Component {
                                 <div className="noteDisplay">
                                     <div className = "noteHolder">
                                         <h2 className="noteName">{note.name}</h2>
-                                        <p className="modified">Modified on {formattedDate}</p>
+                                        <p className="modified">Modified on {note.modified}</p>
                                         <button 
                                             className="deleteNote"
                                             onClick={() => {
@@ -82,7 +93,7 @@ class NotePage extends React.Component {
                                         </button>
                                     </div>
                                     <div className = "contentHolder">
-                                        <p className = "noteContent">{note.content}</p>
+                                        <p className = "noteContent">Content: {note.content}</p>
                                     </div>
                                 </div>
                                 <div class="goBackDisplay">

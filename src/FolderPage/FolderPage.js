@@ -42,8 +42,12 @@ class FolderPage extends React.Component {
         const { folders = []} = this.context.folders;
         const notes = this.context.notes;
 
+        console.log(notes)
+
         const noteArray = notes.filter( note =>
-            note.folderId === this.props.match.params.folderId)
+            note.folder_id == this.props.match.params.folderId)
+        
+        console.log(noteArray)
         
         let dateArray = [];
 
