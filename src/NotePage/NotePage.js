@@ -12,7 +12,6 @@ class NotePage extends React.Component {
 
     deleteNote = (noteId) => {
         window.history.back();
-        console.log('going back');
         this.deleteNoteRequest(noteId);
     }
     
@@ -36,7 +35,7 @@ class NotePage extends React.Component {
             this.context.deleteNote(noteId)
         })
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
 
     }
@@ -76,17 +75,19 @@ class NotePage extends React.Component {
                                     <div className = "noteHolder">
                                         <h2 className="noteName">{note.name}</h2>
                                         <p className="modified">Modified on {note.modified}</p>
-                                        <button 
-                                            className="deleteNote"
-                                            onClick={() => {
-                                                this.deleteNote(
-                                                    note.id,
-                                                    value.deleteNote(note.id)
-                                                )
-                                        }}
->
-                                            Delete note
-                                        </button>
+                                        <Link to="/">
+                                            <button 
+                                                className="deleteNote"
+                                                onClick={() => {
+                                                    this.deleteNote(
+                                                        note.id,
+                                                        value.deleteNote(note.id)
+                                                    )
+                                            }}
+                                            >
+                                                Delete note
+                                            </button>
+                                        </Link>
                                     </div>
                                     <div className = "contentHolder">
                                         <p className = "noteContent">Content: {note.content}</p>

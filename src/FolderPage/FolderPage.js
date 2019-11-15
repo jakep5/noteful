@@ -32,7 +32,7 @@ class FolderPage extends React.Component {
             this.context.deleteNote(noteId)
         })
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
 
     }

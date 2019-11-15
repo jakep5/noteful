@@ -54,7 +54,7 @@ export class NotesProvider extends React.Component {
         .then(window.location.reload())
         .then(newFolder => (this.updateFolder(newFolder)))
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
     } 
     
@@ -98,7 +98,7 @@ export class NotesProvider extends React.Component {
         })
         .then(newNote => this.updateNotes(newNote))
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
     }
 
@@ -125,7 +125,7 @@ export class NotesProvider extends React.Component {
             })
         })
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
     }
 
@@ -146,12 +146,11 @@ export class NotesProvider extends React.Component {
         })
         .then(console.log(this.state.notes))
         .catch(error => {
-            alert(error)
+            console.log(error)
         })
     }
     
     componentDidMount() {
-        console.log('mounted')
         Promise.all([
             fetch(`${config.API_ENDPOINT}/notes`),
             fetch(`${config.API_ENDPOINT}/folders`)
@@ -174,7 +173,7 @@ export class NotesProvider extends React.Component {
                 this.handleFetch(notesResponse, foldersResponse)
             })
             .catch(error => {
-                alert(error)
+                console.log(error)
             })
     }
 
