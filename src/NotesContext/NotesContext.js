@@ -79,7 +79,7 @@ export class NotesProvider extends React.Component {
     }
 
     addNoteFetch = (noteObject, matchFolderId) => {
-        const noteId = this.state.notes[this.state.notes.length - 1].id;
+        const noteId = (this.state.notes.length) ? this.state.notes[this.state.notes.length - 1].id : 1;
         const newNoteId = noteId + 1;
         var date = moment().toISOString();
         const newNote = {
