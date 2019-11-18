@@ -4,7 +4,6 @@ import MainPage from './MainPage/MainPage';
 import FolderPage from './FolderPage/FolderPage';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote'
-import config from './config'
 import NotePage from './NotePage/NotePage';
 import ErrorComponent from './ErrorComponent/ErrorComponent';
 

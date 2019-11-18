@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { NotesContext } from '../NotesContext/NotesContext';
 import { NotesConsumer} from '../NotesContext/NotesContext';
-import ErrorComponent from '../ErrorComponent/ErrorComponent';
 import '../AddFolder/AddFolder.css';
 import './AddNote.css';
 
