@@ -74,7 +74,7 @@ class NotePage extends React.Component {
                                 <div className="noteDisplay">
                                     <div className = "noteHolder">
                                         <h2 className="noteName">{note.name}</h2>
-                                        <p className="modified">Modified on {note.modified}</p>
+                                        <p className="modified">Modified on {formattedDate}</p>
                                         <Link to="/">
                                             <button 
                                                 className="deleteNote"

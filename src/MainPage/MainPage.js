@@ -37,6 +37,9 @@ class MainPage extends React.Component {
     }
 
     render() {
+
+
+        
         return (
             <NotesConsumer>
                 {value => (
@@ -52,14 +55,14 @@ class MainPage extends React.Component {
                                     <Link to="/addNote">
                                         <button className = "addNote">Add Note</button>
                                     </Link>
-                                    {value.notes.map(note => 
+                                    {value.notes.map(note =>
                                         <div className="noteHolder">
                                             <h2 className="noteName">
                                                <Link to={`/notes/${note.id}`}>
                                                     {note.name}
                                                 </Link>
                                             </h2>
-                                            <p className="modified">Date modified: {note.modified}</p>
+                                            <p className="modified">Date modified: {note.modified.substring(0,10)}</p>
                                             <button 
                                                 className="deleteButton"
                                                 onClick={() => {
