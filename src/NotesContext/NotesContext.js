@@ -28,6 +28,7 @@ export class NotesProvider extends React.Component {
             notes: newNotes,
             folders: newFolders
         })
+        this.componentDidMount()
     }
 
     addFolder = (folderName) => {
@@ -63,11 +64,16 @@ export class NotesProvider extends React.Component {
         });
     }
 
+    handleAddNote = (newNote) => {
+        this.setState({
+            notes: [...this.state.notes, newNote]
+        })
+    }
+
 
     getAddNoteFolder = (noteObject) => {
         const matchingFolder = this.state.folders.filter(fldr =>
             fldr.name === noteObject.folder)
-        console.log(matchingFolder)
         this.getFolderId(matchingFolder, noteObject);
     }
 
@@ -94,18 +100,12 @@ export class NotesProvider extends React.Component {
             },
             body: JSON.stringify(newNote)
         })
-        .then(newNote => this.updateNotes(newNote))
+        .then(newNote => this.handleAddNote(newNote))
         .catch(error => {
             console.log(error)
         })
     }
 
-    updateNotes = (newNote) => {
-        this.setState({
-            notes: [...this.state.notes, newNote]
-        });
-/*         window.location.reload();
- */    }
 
     updateFoldersFetch = () => {
         fetch(`${config.API_ENDPOINT}/folders`)

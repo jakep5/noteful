@@ -62,8 +62,8 @@ class MainPage extends React.Component {
                                                     {note.name}
                                                 </Link>
                                             </h2>
-                                            <p className="modified">Date modified: {note.modified.substring(0,10)}</p>
-                                            <button 
+{/*                                             <p className="modified">Date modified: {note.modified.substring(0,10)}</p>
+ */}                                            <button 
                                                 className="deleteButton"
                                                 onClick={() => {
                                                     this.deleteNoteRequest(

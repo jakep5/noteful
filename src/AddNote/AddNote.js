@@ -16,7 +16,6 @@ export default class AddNote extends Component {
             content: document.getElementById('noteContent').value,
             folder: document.getElementById('noteFolder').value,
         }
-        console.log(noteObject)
         this.context.getAddNoteFolder(noteObject);
         window.history.back();
     }
