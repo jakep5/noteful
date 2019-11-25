@@ -55,8 +55,8 @@ class MainPage extends React.Component {
                                     <Link to="/addNote">
                                         <button className = "addNote">Add Note</button>
                                     </Link>
-                                    {value.notes.map(note =>
-                                        <div className="noteHolder">
+                                    {value.notes.map((note, i) =>
+                                        <div className="noteHolder" key={note.id}>
                                             <h2 className="noteName">
                                                <Link to={`/notes/${note.id}`}>
                                                     {note.name}
@@ -78,7 +78,7 @@ class MainPage extends React.Component {
                                 </div>
                                 <div className="foldersHolder">
                                     {value.folders.map(folder =>
-                                        <div className="folderHolder">
+                                        <div className="folderHolder" key={folder.id}>
                                             <h2 className="folderName">
                                                 <Link to={`/folders/${folder.id}`}>
                                                     {folder.name}

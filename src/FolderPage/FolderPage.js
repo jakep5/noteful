@@ -69,7 +69,7 @@ class FolderPage extends React.Component {
                                         <button className = "addNote">Add Note</button>
                                     </Link>
                                     {noteArray.map((note, index) => 
-                                        <div className="noteHolder">
+                                        <div className="noteHolder" key={note.id}>
                                             <h2 className="noteName">
                                                 <Link to={`/notes/${note.id}`}>
                                                     {note.name}
@@ -90,7 +90,7 @@ class FolderPage extends React.Component {
                                     {value.folders.map(folder => {
                                         if (folder.id === this.props.match.params.folderId) {
                                             return (
-                                                <div className="folderHolder highlighted">
+                                                <div className="folderHolder highlighted" key={folder.id}>
                                                     <h2 className="folderName">
                                                         <Link to={`/folders/${folder.id}`}>
                                                             {folder.name}
@@ -100,7 +100,7 @@ class FolderPage extends React.Component {
                                             )}
                                         else {
                                             return (
-                                                <div className="folderHolder">
+                                                <div className="folderHolder" key={folder.id}>
                                                     <h2 className="folderName">
                                                         <Link to={`/folders/${folder.id}`}>
                                                             {folder.name}
