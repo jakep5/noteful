@@ -65,6 +65,9 @@ class FolderPage extends React.Component {
                         <main>
                             <section className ="mainPage">
                                 <div className = "noteDisplay">
+                                    <Link to="/addNote">
+                                        <button className = "addNote">Add Note</button>
+                                    </Link>
                                     {noteArray.map((note, index) => 
                                         <div className="noteHolder">
                                             <h2 className="noteName">

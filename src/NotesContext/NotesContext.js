@@ -68,7 +68,7 @@ export class NotesProvider extends React.Component {
 
     getAddNoteFolder = (noteObject) => {
         const matchingFolder = this.state.folders.filter(fldr =>
-            fldr.name == noteObject.folder)
+            fldr.name === noteObject.folder)
         console.log(matchingFolder)
         this.getFolderId(matchingFolder, noteObject);
     }

@@ -93,7 +93,7 @@ class NotePage extends React.Component {
                                         <p className = "noteContent">Content: {note.content}</p>
                                     </div>
                                 </div>
-                                <div class="goBackDisplay">
+                                <div className="goBackDisplay">
                                     <button className = "goBack" onClick={this.goBack}>Go Back</button>
                                     <h2 className = "folderName"> Folder : {folder.name}</h2>
                                 </div>
