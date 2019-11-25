@@ -51,7 +51,6 @@ export class NotesProvider extends React.Component {
             }
             return response.json()
         })
-        .then(window.location.reload())
         .then(newFolder => (this.updateFolder(newFolder)))
         .catch(error => {
             console.log(error)
@@ -62,7 +61,6 @@ export class NotesProvider extends React.Component {
         this.setState({
             folders: [...this.state.folders, newFolder]
         });
-        window.location.reload();
     }
 
 
@@ -106,8 +104,8 @@ export class NotesProvider extends React.Component {
         this.setState({
             notes: [...this.state.notes, newNote]
         });
-        window.location.reload();
-    }
+/*         window.location.reload();
+ */    }
 
     updateFoldersFetch = () => {
         fetch(`${config.API_ENDPOINT}/folders`)
