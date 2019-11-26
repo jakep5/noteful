@@ -38,7 +38,12 @@ class MainPage extends React.Component {
 
     render() {
 
+        let modifiedArray = [];
 
+        this.context.notes.forEach(note =>
+            modifiedArray.push(note.modified))
+
+        console.log(modifiedArray)
         
         return (
             <NotesConsumer>
@@ -62,7 +67,7 @@ class MainPage extends React.Component {
                                                     {note.name}
                                                 </Link>
                                             </h2>
-                                            <p className="modified">Date modified: {note.modified.substring(0,10)}</p>
+                                            <p className="modified">Date modified: {note.modified}</p>
                                             <button 
                                                 className="deleteButton"
                                                 onClick={() => {
